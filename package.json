@@ -1,0 +1,27 @@
+{
+  "name": "simplefriendserver",
+  "version": "1.0.0",
+  "description": "Add express, cors helmet",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harrisonbrock/simpleFriendServer.git"
+  },
+  "author": "Harrison Brock",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/harrisonbrock/simpleFriendServer/issues"
+  },
+  "homepage": "https://github.com/harrisonbrock/simpleFriendServer#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "helmet": "^3.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
+}
