@@ -15,8 +15,11 @@ const friends = [
 ];
 
 // Get All Friends
-app.get('/', (req, res) => {
-    res.status(200).json({ api: 'running' });
+app.get('/api/friends', (req, res) => {
+
+    if (friends.length === 0) res.status(404).send({error: 'They are no friends in the database. Please add a friend'});
+    else res.status(201).send(friends);
+
 });
 
 // Get Friend By ID
@@ -32,11 +35,23 @@ app.get('/api/friends/:id', (req, res) => {
     else res.status(201).send(friend);
 });
 
-app.get('/api/friends', (req, res) => {
+// Create friend
+app.post('/api/friends/:id', (req, res) => {
 
-    if (friends.length === 0) res.status(404).send({error: 'They are no friends in the database. Please add a friend'})
-    else res.status(201).send(friends);
+    // Get name for body
+    const name = req.body.name;
 
+    if (!name) res.status(400).send({error: `You must enter a name`})
+    else {
+        const newId = friends[friends.length - 1].id + 1;
+        const friend = {id: newId, name: name};
+        friends.push(friend);
+        res.status(201).send(friend);
+    }
+});
+
+app.get('/', (req, res) => {
+    res.status(200).json({ api: 'running' });
 });
 
 const port = process.env.PORT || 4500;
