@@ -11,6 +11,21 @@ const friends = [
     {
         id: 0,
         name: 'Tom'
+    },
+
+    {
+        id: 0,
+        name: 'Amber'
+    },
+
+    {
+        id: 0,
+        name: 'Tiffany'
+    },
+
+    {
+        id: 0,
+        name: 'John'
     }
 ];
 
@@ -47,6 +62,22 @@ app.post('/api/friends/:id', (req, res) => {
         const friend = {id: newId, name: name};
         friends.push(friend);
         res.status(201).send(friend);
+    }
+});
+
+// Update friend
+app.put('/api/friends/:id', (req, res) => {
+
+    // convert Id to int
+    const id =  parseInt(req.params.id);
+
+    // Find friend with ID
+    const friend = friends.find(f => f.id ===  id);
+
+    if (!friend) res.status(404).send({error: `No Friend found with  ID: ${id}`});
+    else {
+        friend.name = req.body.name;
+        res.status(203);
     }
 });
 
